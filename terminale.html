@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Cultural Compass — An Anglophone Timeline</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,700;1,9..144,400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --emerald-deep: #0d2b22;
+    --emerald: #14382c;
+    --emerald-soft: #1d4a3a;
+    --gold: #d9b45b;
+    --gold-bright: #f0d189;
+    --ivory: #f4efe3;
+    --ivory-dim: #cfc8b4;
+    --uk-accent: #8fb8a8;
+    --us-accent: #d99a8a;
+    --class-accent: #c3a8e0;
+    --ie-accent: #9dc46a;
+    --in-accent: #e0a94f;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--emerald-deep);
+    color: var(--ivory);
+    font-family: 'Newsreader', serif;
+    font-size: 17px;
+    line-height: 1.55;
+    overflow-x: hidden;
+  }
+
+  /* ---------- Header ---------- */
+  header {
+    text-align: center;
+    padding: 4.5rem 1.5rem 3rem;
+    position: relative;
+  }
+  .eyebrow {
+    font-family: 'Newsreader', serif;
+    font-style: italic;
+    color: var(--gold);
+    letter-spacing: 0.14em;
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+  }
+  h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    color: var(--ivory);
+    line-height: 1.08;
+  }
+  h1 .gold { color: var(--gold-bright); }
+  .subtitle {
+    max-width: 34rem;
+    margin: 1.4rem auto 0;
+    color: var(--ivory-dim);
+    font-size: 1.05rem;
+  }
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 2.2rem;
+    margin-top: 2.2rem;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+  }
+  .legend span::before {
+    content: "";
+    display: inline-block;
+    width: 0.65em; height: 0.65em;
+    border-radius: 50%;
+    margin-right: 0.5em;
+    vertical-align: baseline;
+  }
+  .legend .uk::before { background: var(--uk-accent); }
+  .legend .us::before { background: var(--us-accent); }
+  .legend .class::before { background: var(--class-accent); }
+  .legend .ie::before { background: var(--ie-accent); }
+  .legend .in::before { background: var(--in-accent); }
+
+  /* ---------- Timeline ---------- */
+  .timeline {
+    position: relative;
+    max-width: 62rem;
+    margin: 0 auto;
+    padding: 2rem 1rem 6rem;
+  }
+  /* the golden thread */
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0; bottom: 0;
+    width: 2px;
+    transform: translateX(-50%);
+    background: linear-gradient(to bottom, transparent, var(--gold) 4%, var(--gold) 96%, transparent);
+    box-shadow: 0 0 12px rgba(217,180,91,0.45);
+  }
+  .era-label {
+    position: relative;
+    text-align: center;
+    margin: 3.5rem 0 2rem;
+    z-index: 2;
+  }
+  .era-label span {
+    display: inline-block;
+    background: var(--emerald-deep);
+    border: 1px solid var(--gold);
+    color: var(--gold-bright);
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 0.85rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.45em 1.3em;
+    border-radius: 2em;
+  }
+
+  .event {
+    position: relative;
+    width: 50%;
+    padding: 0.6rem 2.6rem 0.6rem 0;
+    margin-bottom: 0.4rem;
+    z-index: 1;
+  }
+  .event.right {
+    left: 50%;
+    padding: 0.6rem 0 0.6rem 2.6rem;
+  }
+  /* node on the thread */
+  .event::after {
+    content: "";
+    position: absolute;
+    top: 1.55rem;
+    right: -7px;
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    background: var(--emerald-deep);
+    border: 2px solid var(--gold);
+    box-shadow: 0 0 10px rgba(240,209,137,0.5);
+    transition: background 0.25s, transform 0.25s;
+  }
+  .event.right::after { right: auto; left: -7px; }
+  .event.open::after, .event:hover::after {
+    background: var(--gold-bright);
+    transform: scale(1.25);
+  }
+
+  .card {
+    background: var(--emerald);
+    border: 1px solid rgba(217,180,91,0.25);
+    border-radius: 10px;
+    padding: 1.1rem 1.3rem;
+    cursor: pointer;
+    transition: border-color 0.25s, transform 0.25s, box-shadow 0.25s;
+    text-align: left;
+  }
+  .event:not(.right) .card { text-align: right; }
+  .card:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 24px rgba(0,0,0,0.35);
+  }
+  .card:focus-visible {
+    outline: 2px solid var(--gold-bright);
+    outline-offset: 3px;
+  }
+  .year {
+    font-family: 'Fraunces', serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--gold-bright);
+    line-height: 1.1;
+  }
+  .card h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 500;
+    font-size: 1.12rem;
+    margin-top: 0.15rem;
+    color: var(--ivory);
+  }
+  .tag {
+    display: inline-block;
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-top: 0.45rem;
+    padding: 0.18em 0.7em;
+    border-radius: 1em;
+    border: 1px solid;
+  }
+  .tag.uk { color: var(--uk-accent); border-color: var(--uk-accent); }
+  .tag.us { color: var(--us-accent); border-color: var(--us-accent); }
+  .tag.class { color: var(--class-accent); border-color: var(--class-accent); }
+  .tag.ie { color: var(--ie-accent); border-color: var(--ie-accent); }
+  .event.ie-event::after { border-color: var(--ie-accent); box-shadow: 0 0 10px rgba(157,196,106,0.5); }
+  .tag.in { color: var(--in-accent); border-color: var(--in-accent); }
+  .event.in-event::after { border-color: var(--in-accent); box-shadow: 0 0 10px rgba(224,169,79,0.5); }
+  .event.class-event::after { border-color: var(--class-accent); box-shadow: 0 0 10px rgba(195,168,224,0.5); }
+
+  .detail {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.45s ease, opacity 0.35s ease, margin-top 0.35s ease;
+    opacity: 0;
+    margin-top: 0;
+    color: var(--ivory-dim);
+    font-size: 0.98rem;
+    text-align: left;
+  }
+  .event.open .detail {
+    max-height: 30rem;
+    opacity: 1;
+    margin-top: 0.8rem;
+  }
+  .detail em { color: var(--gold); font-style: italic; }
+  .detail .why {
+    display: block;
+    margin-top: 0.6rem;
+    padding-top: 0.6rem;
+    border-top: 1px dashed rgba(217,180,91,0.3);
+    font-style: italic;
+    color: var(--ivory);
+  }
+  .detail .why::before {
+    content: "Why it matters — ";
+    font-family: 'Fraunces', serif;
+    font-style: normal;
+    font-weight: 500;
+    color: var(--gold);
+  }
+
+  footer {
+    text-align: center;
+    padding: 2rem 1rem 3.5rem;
+    color: var(--ivory-dim);
+    font-style: italic;
+    font-size: 0.92rem;
+  }
+  footer .thread { color: var(--gold); }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width: 700px) {
+    .timeline::before { left: 1.1rem; }
+    .event, .event.right {
+      width: 100%;
+      left: 0;
+      padding: 0.5rem 0 0.5rem 2.6rem;
+    }
+    .event::after, .event.right::after { left: calc(1.1rem - 6px); right: auto; }
+    .event:not(.right) .card { text-align: left; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+    html { scroll-behavior: auto; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Terminale LLCE · Langue, Littérature &amp; Culture Anglophone</div>
+  <h1>The Cultural <span class="gold">Compass</span></h1>
+  <p class="subtitle">Twenty-five landmarks of the English-speaking world. The golden thread is the Atlantic: Britain and Ireland on the left bank, America on the right — and the Empire reaching far beyond both. Click any event to open its story.</p>
+  <div class="legend">
+    <span class="uk">Britain &amp; the UK</span>
+    <span class="us">The United States</span>
+    <span class="ie">Ireland</span>
+    <span class="in">India &amp; Empire</span>
+    <span class="class">Class discoveries</span>
+  </div>
+</header>
+
+<main class="timeline" id="timeline">
+
+  <div class="era-label"><span>Foundations · 1066 – 1707</span></div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1066</div>
+      <h3>The Norman Conquest</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        William of Normandy defeats King Harold at the Battle of Hastings and takes the English crown. For the next three centuries, the ruling class speaks French while the people speak Old English — and the two languages slowly merge.
+        <span class="why">This is why English has two words for almost everything (<em>ask</em>/<em>demand</em>, <em>freedom</em>/<em>liberty</em>, <em>cow</em>/<em>beef</em>). Modern English is born from this collision.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">c. 1590–1616</div>
+      <h3>Shakespeare &amp; the Elizabethan Stage</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        In the London of Elizabeth I, theatre becomes a national passion. At the Globe, Shakespeare writes for everyone — from groundlings paying a penny to aristocrats in the galleries — and invents or popularises hundreds of words still used today.
+        <span class="why">Shakespeare is the shared vocabulary of the English-speaking world: quoted, adapted and parodied everywhere from Hollywood to hip-hop.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1620</div>
+      <h3>The Mayflower &amp; the Pilgrims</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        A hundred or so English Puritans cross the Atlantic seeking religious freedom and found Plymouth Colony. Their harsh first winter, and the help of the Wampanoag people, are remembered every year at Thanksgiving.
+        <span class="why">This is America's founding <em>myth</em> — a story of freedom and new beginnings that leaves out the perspective of Native peoples. Understanding it as a myth is understanding America.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1642–1660</div>
+      <h3>Civil War, Cromwell &amp; the Restoration</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        Parliament goes to war against King Charles I — and wins. The king is executed in 1649, and for eleven years England is a republic under Oliver Cromwell's stern Puritan rule. Theatres are closed, Christmas is banned. In 1660 the monarchy returns, chastened.
+        <span class="why">Britain executed a king 144 years before France — then invited the monarchy back. This explains the British model: a crown that reigns but does not rule.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1707</div>
+      <h3>The Act of Union</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        England (with Wales) and Scotland merge their parliaments to become one kingdom: <em>Great Britain</em>. Ireland joins in 1801, creating the United Kingdom.
+        <span class="why">The key to a universal confusion: <em>England</em> ≠ <em>Britain</em> ≠ <em>the UK</em>. It also explains why Scottish independence is still a live political question today.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="era-label"><span>Revolutions · 1760 – 1901</span></div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">c. 1760–1840</div>
+      <h3>The Industrial Revolution</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        Steam engines, cotton mills, railways: Britain becomes "the workshop of the world". Millions leave the countryside for smoky industrial cities — Manchester, Birmingham, Glasgow — where fortunes and slums grow side by side.
+        <span class="why">The world you live in — factories, cities, trains, pollution, the working class — starts here. It is also the landscape of Dickens and of Britain's industrial North.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1776</div>
+      <h3>The Declaration of Independence</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        The thirteen American colonies break with Britain, declaring that "all men are created equal" with rights to "Life, Liberty and the pursuit of Happiness". The war that follows creates the United States.
+        <span class="why">These words became the standard America is judged by — invoked by Lincoln, by Martin Luther King, by every movement demanding that the promise finally be kept for everyone.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1861–1865</div>
+      <h3>The Civil War &amp; the Abolition of Slavery</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        Eleven Southern states secede to defend slavery; the North, led by Abraham Lincoln, fights to preserve the Union. Around 750,000 die — more Americans than in both World Wars combined. Slavery is abolished in 1865.
+        <span class="why">The deepest wound in American history. Race, the divide between North and South, debates about Confederate statues — the Civil War is still present in American life.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event ie-event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1845–1852</div>
+      <h3>The Great Irish Famine</h3>
+      <span class="tag ie">Ireland</span>
+      <div class="detail">
+        A disease destroys the potato crop that the Irish poor depend on. Around a million people die of hunger and disease; another million emigrate, most of them to America. Throughout the catastrophe, Ireland — then part of the United Kingdom — continues to export food to Britain.
+        <span class="why">Ireland has never regained its pre-famine population. This is why there are more people of Irish descent in the United States than in Ireland itself — and why Irish nationalism hardened into a demand for independence.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event in-event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1857–1858</div>
+      <h3>The Indian Rebellion &amp; the Birth of the Raj</h3>
+      <span class="tag in">India &amp; Empire</span>
+      <div class="detail">
+        Indian soldiers serving a <em>private company</em> — the East India Company, which had ruled much of India for a century — rise in revolt. The rebellion is crushed with great brutality, and the British Crown takes direct control: the Raj begins. Victoria is proclaimed Empress of India in 1876.
+        <span class="why">India was first colonised not by a country but by a corporation — a fact worth pausing on. Indians call 1857 their First War of Independence; British textbooks long called it a "mutiny." Same event, two names.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1837–1901</div>
+      <h3>The Victorian Age</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        Under Queen Victoria, Britain rules the largest empire in history — "the empire on which the sun never sets", covering a quarter of the globe. At home: strict morality and respectability on the surface, poverty and child labour underneath.
+        <span class="why">The empire explains why English is a world language and why Britain is multicultural today. The Victorian contrast between appearance and reality feeds its greatest novels.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="era-label"><span>The Modern World · 1914 – 1969</span></div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1914–1918</div>
+      <h3>The Great War</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        A generation of young men leaves for the trenches of France and Flanders; nearly a million from Britain and its empire never return. The war poets — Wilfred Owen, Siegfried Sassoon — turn its horror into some of the most powerful poetry in English.
+        <span class="why">Every November, Britain wears the red poppy of remembrance. The Great War shattered Victorian confidence and gave birth to modern literature's darker, fractured voice.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event ie-event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1916–1922</div>
+      <h3>The Easter Rising &amp; the Partition of Ireland</h3>
+      <span class="tag ie">Ireland</span>
+      <div class="detail">
+        At Easter 1916, rebels seize the centre of Dublin and proclaim an Irish Republic. The rising fails within a week, but the execution of its leaders turns them into martyrs — "a terrible beauty is born", writes W.B. Yeats. War and treaty follow: in 1922 the island is divided between an independent Irish Free State and Northern Ireland, which remains in the UK.
+        <span class="why">The first crack in the British Empire, and the origin of a border that still shapes politics today — including the hardest question of Brexit.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1920s</div>
+      <h3>The Roaring Twenties &amp; the Harlem Renaissance</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        Jazz, flappers, Prohibition and gangsters: America roars into modernity. In Harlem, Black writers, musicians and artists — Langston Hughes, Duke Ellington, Zora Neale Hurston — create an explosion of African-American culture.
+        <span class="why">The decade of <em>The Great Gatsby</em> and the birth of the music that would conquer the world. The Harlem Renaissance is the moment Black American voices claim the centre of the stage.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1929</div>
+      <h3>The Wall Street Crash</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        In October 1929 the New York stock market collapses, wiping out fortunes overnight and plunging America — then the world — into the Great Depression. By 1933, one American worker in four is unemployed.
+        <span class="why">The backdrop of Steinbeck's novels and Dorothea Lange's photographs: dust bowls, breadlines, migrant families. It reshaped how Americans think about government, poverty and the American Dream.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right class-event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1894–1991</div>
+      <h3>Martha Graham</h3>
+      <span class="tag class">Class discovery</span>
+      <div class="detail">
+        Martha Graham is one of the most important and influential American dancers of all time. In her dances, she wants to express intense human emotions with sharp and forceful movements based on contraction and the representation of breathing.
+        <span class="why">Unlike the classical ballet of her era, which danced around emotions, she proved that dancing is not only for decorative or theatrical purposes: it can express deep emotions. — T.LLCE, after watching <em>Lamentation</em> (1930)</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1939–1945</div>
+      <h3>World War II, the Blitz &amp; Churchill</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        In 1940, Britain stands alone against Nazi Germany. London is bombed for 57 consecutive nights during the Blitz; Churchill's speeches — "we shall fight on the beaches" — hold the nation together until victory in 1945.
+        <span class="why">"The Blitz spirit" — calm courage under pressure — remains Britain's favourite image of itself, invoked in every national crisis (including, ironically, by both sides of the Brexit debate).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event in-event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1947</div>
+      <h3>Indian Independence &amp; Partition</h3>
+      <span class="tag in">India &amp; Empire</span>
+      <div class="detail">
+        After decades of nonviolent campaigning led by Gandhi, Britain leaves India. But independence comes with partition: the territory is split into India and Pakistan along religious lines, with the border drawn in a few weeks by a British lawyer who had never been to India. Some fifteen million people are displaced; hundreds of thousands die in the violence.
+        <span class="why">The end of the British Empire begins here, and so does modern South Asian Britain. Gandhi's nonviolence directly inspired Martin Luther King — the thread runs straight to the American civil rights movement.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1948</div>
+      <h3>Windrush &amp; the NHS</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        Two births in one year. The ship <em>Empire Windrush</em> brings some 500 Caribbean passengers to London, pioneers of large-scale immigration from the Commonwealth. The same year, the National Health Service opens: free healthcare for all.
+        <span class="why">Modern multicultural Britain and the welfare state start here. The NHS is Britain's "national religion"; the Windrush generation's story runs through contemporary British literature and politics.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1954–1968</div>
+      <h3>The Civil Rights Movement</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        From <em>Brown v. Board of Education</em> (1954), which outlaws school segregation, to Rosa Parks, the Montgomery bus boycott, and Martin Luther King's "I have a dream" (1963) — Black Americans fight to end segregation through nonviolent resistance. King is assassinated in 1968.
+        <span class="why">The essential context for African-American literature and for today's debates on race in America, from Black Lives Matter to the ballot box.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1969</div>
+      <h3>The Moon Landing — and Woodstock</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        In July, Neil Armstrong walks on the Moon: "one giant leap for mankind", watched by 600 million people. A month later, half a million young people gather at Woodstock for three days of music, mud and peace signs.
+        <span class="why">One summer, two Americas: the triumphant superpower of the Space Race, and the rebellious counterculture protesting the Vietnam War. Both are essential to understanding the 1960s.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="era-label"><span>Our Times · 1979 – Today</span></div>
+
+  <div class="event ie-event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1968–1998</div>
+      <h3>The Troubles &amp; the Good Friday Agreement</h3>
+      <span class="tag ie">Ireland</span>
+      <div class="detail">
+        Thirty years of conflict in Northern Ireland between nationalists (mainly Catholic, seeking union with Ireland) and unionists (mainly Protestant, loyal to Britain), with the British Army caught in between. More than 3,500 people die. The Good Friday Agreement of 1998 brings a fragile peace.
+        <span class="why">Peace here is recent — younger than your parents. It rests on an invisible border between North and South, which is exactly what made Brexit so difficult to negotiate.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">1979–1990</div>
+      <h3>The Thatcher Years</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        Margaret Thatcher, Britain's first female Prime Minister, transforms the country: privatisation, free markets, the crushing of the miners' strike (1984–85). Industrial towns of the North lose their mines and factories — and their way of life.
+        <span class="why">Britain is still arguing about her. The closed pits of the North (think <em>Billy Elliot</em>) and the divide between London and the old industrial regions date from this era.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">2001</div>
+      <h3>September 11</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        On 11 September 2001, hijacked planes destroy the World Trade Center in New York and hit the Pentagon, killing nearly 3,000 people. America responds with wars in Afghanistan and Iraq.
+        <span class="why">The moment the 21st century began: security, surveillance, the "war on terror" and a new anxiety in American life and literature all flow from this day.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event right">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">2008</div>
+      <h3>The Election of Barack Obama</h3>
+      <span class="tag us">America</span>
+      <div class="detail">
+        Barack Obama becomes the first African-American President of the United States, elected on a message of hope — "Yes we can" — in the middle of a global financial crisis.
+        <span class="why">A landmark in the long story that runs from slavery through the civil rights movement: a moment of promise whose meaning America is still debating.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="card" role="button" tabindex="0" aria-expanded="false">
+      <div class="year">2016–2020</div>
+      <h3>Brexit</h3>
+      <span class="tag uk">Britain</span>
+      <div class="detail">
+        In June 2016, 52% of British voters choose to leave the European Union. After years of political chaos, the UK formally leaves in 2020 — the first country ever to do so.
+        <span class="why">The defining British question of your lifetime: it divided families, regions and generations, and reopened every old debate about identity — English, Scottish, British, European.</span>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  Follow the <span class="thread">golden thread</span> — every text we read this year has its place somewhere on it.
+</footer>
+
+<script>
+  document.querySelectorAll('.card').forEach(card => {
+    const toggle = () => {
+      const ev = card.closest('.event');
+      const isOpen = ev.classList.toggle('open');
+      card.setAttribute('aria-expanded', isOpen);
+    };
+    card.addEventListener('click', toggle);
+    card.addEventListener('keydown', e => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggle(); }
+    });
+  });
+</script>
+
+</body>
+</html>
